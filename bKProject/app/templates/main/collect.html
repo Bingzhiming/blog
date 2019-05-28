@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>欢迎<strong>{{current_user.name}}的收藏</strong></h1>
+
+            <div class="list-group">
+                {% for c in collects %}
+                  <ab href="#" class="list-group-item ">
+                    <h4 class="list-group-item-heading">
+                        <a href="#">{{c.blog_id.title}}</a>
+                        <span style="float: right">
+                        <a href="#"> #</a>
+
+                        &nbsp;&nbsp;{{c.time}}</span>
+                    </h4>
+                  </ab>
+                {% endfor %}
+            </div>
+
+        <div align="center">
+            {% import 'page/macro.html' as macro %}
+            {{macro.pagination_widget(pagination, 'main.collect')}}
+        </div>
+
+{% endblock %}

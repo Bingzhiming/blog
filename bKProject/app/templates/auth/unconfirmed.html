@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1><small>尊敬的{{user.name}}!</small></h1>
+<p>您的邮箱<{{user.email}}>中有一封激活邮件！</p>
+<p>请您尽快登录邮箱激活</p>
+<p><a href="http//{{email_addr}}">点击转到邮箱</a></p>
+<p>有效时间十分钟</p>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h3>欢迎</h3><h1>{{current_user.name}}</h1>
+            <ul class="list-group">
+                <li class="list-group-item list-group-item-success">
+                    总信息数：
+                    <a class="">{{b}}</a>&nbsp;&nbsp;
+                    今日发表：
+                    <a class="">{{d}}</a>&nbsp;&nbsp;
+                </li>
+           </ul>
+
+            <div class="list-group">
+                {% for b in blogs %}
+                  <ab href="{{url_for('main.blog_info', blog_id=b.id)}}" class="list-group-item ">
+                    <h4 class="list-group-item-heading">
+                        <a href={{url_for('main.blog_info', blog_id=b.id)}}">{{b.title}}</a>
+                        <span style="float: right">
+                        <a href="{{url_for('main.user_main_page', user_id=b.user.id)}}"> {{b.user.name}}</a>
+
+                        &nbsp;&nbsp;{{b.time}}</span>
+                    </h4>
+                    <p class="list-group-item-text">
+                        {{b.content[:200]}}
+                    </p>
+                  </ab>
+                {% endfor %}
+            </div>
+
+        <div align="center">
+            {% import 'page/macro.html' as macro %}
+            {{macro.pagination_widget(pagination, 'main.index')}}
+        </div>
+
+
+{% endblock %}

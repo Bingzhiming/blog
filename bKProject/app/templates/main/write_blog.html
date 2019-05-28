@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row">
+    <div class="col-md-10">
+        <div style="border-bottom: 1px solid #d5d5d5">
+            <div class="row">
+                <form class="form-horizontal" method="post" action="">
+                    {{ form.hidden_tag() }}
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">{{form.title.label}}</label>
+                        <div class="col-md-9">
+                            {{form.title(class="form-control")}}
+                            {% for e in form.title.errors %}
+                            <span style="color: red">{{e}}</span>
+                            {% endfor %}
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3">{{form.content.label}}</label>
+                        <div class="col-md-9">
+                            {{form.content(class="form-control",style="height:400px")}}
+                            {% for e in form.content.errors %}
+                            <span style="color: red">{{e}}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-3 col-md-12">
+                            {{form.submit(class="btn btn-success")}}
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+    <title>
+        {% block title %}
+        阳光社区
+        {% endblock %}
+    </title>
+</head>
+<body>
+<!--导航栏-->
+<nav class="navbar navbar-default navbar-fixed-top" style="background-color: white">
+    <div class="container">
+        <div class="navbar-header">
+            <div class="navbar-brand">
+                <span style="color:#3c763d">信息发布系统</span>
+            </div>
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#my-navbar-ver">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse" id="my-navbar-ver">
+            <ul class="nav navbar-nav">
+                <li><a href="{{url_for('main.index')}}">主页</a></li>
+                <li><a href="#">社区</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                {% if current_user.is_authenticated %}
+                <li><a href="{{url_for('main.user_info')}}">{{current_user.name}}</a></li>
+                <li><a href="{{url_for('auth.logout')}}">注销</a></li>
+                {% else %}
+                <li><a href="{{url_for('auth.login')}}">登录</a></li>
+                <li><a href="{{url_for('auth.register')}}">注册</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!--主体-->
+<div class="container">
+    <div class="jumbotron padding" style="background-color: #f7f7f7;">
+        <div class="page-header">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

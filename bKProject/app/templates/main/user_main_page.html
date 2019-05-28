@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1><small>欢迎 &nbsp;</small>{{current_user.name}}</h1>
+    <div class="row">
+        <div class="col-md-3">
+            <ul class="list-group">
+                <li class="list-group-item list-group-item-success">昵称：{{user.name}}</li>
+                <li class="list-group-item list-group-item-info">邮箱：{{user.email}}</li>
+                <li class="list-group-item list-group-item-warning">角色：{{user.role.name}}</li>
+                <li class="list-group-item list-group-item-danger">位置：
+                    <a href="https://www.baidu.com/s?wd={{current_user.location}}">
+                        {{user.location}}
+                    </a>
+                </li>
+                <li class="list-group-item list-group-item-success">签名：{{user.label}}</li>
+            </ul>
+            {% if user == current_user %}
+            <a href="{{url_for('.edit_user')}}" class="btn btn-warning">编辑</a>
+            {% endif %}
+            &nbsp;&nbsp;
+            {% if current_user.is_fensi_of(user) %}
+                <a href="{{url_for('main.unfollow', user_id=user.id)}}" class="btn btn-default">
+                <span style="font-size: 20px;color: red" class="glyphicon glyphicon-heart" aria-hidden="true">取关</span>
+                </a>
+            {% else %}
+                &nbsp;
+                <a href="{{url_for('main.follow', user_id=user.id)}}" class="btn btn-default">
+                <span style="font-size: 20px;color: black"class="glyphicon glyphicon-heart-empty" aria-hidden="true">关注</span>
+                </a>
+            {% endif %}
+        </div>
+        <div class="col-md-9">
+           <ul class="list-group">
+                <li class="list-group-item list-group-item-success">昵称：{{current_user.name}}</li>
+           </ul>
+
+            <div class="list-group">
+                {% for blog in pagination.items %}
+                  <a href="{{url_for('main.blog_info', blog_id=blog.id)}}" class="list-group-item ">
+                    <h4 class="list-group-item-heading">
+                        {{blog.title}}<span style="float: right;"><small>{{blog.user.name}}&nbsp;&nbsp;{{blog.time}}</small></span>
+                    </h4>
+                    <p class="list-group-item-text">{{blog.content[:200]}}</p>
+                  </a>
+                {% endfor %}
+            </div>
+
+            <div align="center">
+                {% import 'page/macro.html' as macro %}
+                {{macro.pagination_widget_user_id(pagination, 'main.user_main_page', user.id)}}
+            </div>
+        </div>
+    </div>
+
+
+
+{% endblock %}

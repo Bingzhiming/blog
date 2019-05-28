@@ -1,0 +1,21 @@
+<html>
+
+<head>
+
+</head>
+
+<!--# http://127.0.0.1:5000/auth/confirm?id=sdfjkasfjfjsjfjfjfaj;afs-->
+
+<body>
+<h1><small>尊敬的{{name}}!</small></h1>
+<p>请点击
+    <a href="{{url_for('auth.confirm', token=token, _external=True)}}">这里</a>
+    激活</p>
+
+<p>激活链接有效时间为10分钟</p>
+
+<h4><small>By</small>&nbsp;EMBSKY.ZhiYongLi</h4>
+
+</body>
+
+</html>

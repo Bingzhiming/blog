@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1><small>尊敬的VIP用户!</small></h1>
+
+<p>请输入您注册时的邮箱，重新发送激活链接</p>
+<form method="post" action="" >
+    {{form.hidden_tag()}}
+    {{form.email}}<br>
+    {{form.submit}}
+
+</form>
+
+<h4><small>By</small>&nbsp;EMBSKY.ZhiYongLi</h4>
+
+{% endblock %}
